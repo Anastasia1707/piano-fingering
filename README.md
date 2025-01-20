@@ -1,11 +1,11 @@
-# Piano Fingering Prediction Project
+# Piano Fingering
 
-![Enter image alt description](img/notes_with_fingering.png)
+
+![notes_with_fingering](img/notes_with_fingering.png)
 
 ## Abstract
 
 This project leverages machine learning to predict piano fingering for musical scores. It uses real-world annotated piano scores, processes them to extract meaningful features, trains a Random Forest model, and applies the model to annotate unseen scores with predicted fingering.
-
 
 
 
@@ -14,48 +14,34 @@ This project leverages machine learning to predict piano fingering for musical s
 Determining optimal piano fingering for a given score is a challenging task, influenced by musical, physiological, and stylistic factors. Current solutions rely on manual annotation, which can be time-consuming and inconsistent. This project automates fingering prediction using machine learning techniques, making it a valuable tool for learners, educators, and composers.
 
 
-
-
 ## Project Overview
 
-The project consists of three main components:
+The project consists of three main components
 
-**Training Data Preparation**:
+### Training Data Preparation
 
-1. Parsed publicly available MusicXML files with fingering annotations using the music21 library.
+Parsed publicly available MusicXML files with fingering annotations using the music21 library. Extracted features such as note pitch, chord information. Combined extracted data into a structured CSV dataset (piano_fingering.csv) for training.
 
-2. Extracted features such as note pitch, chord information, and sequential context (e.g., previous notes and fingers).
+### Model Training and Evaluation
 
-3. Combined extracted data into a structured CSV dataset (piano_fingering.csv) for training.
+Engineered features for the Random Forest model (previous fingering data). Trained a Random Forest Classifier and evaluated its performance using accuracy and confusion matrices. Saved the trained model for future use.
 
-**Model Training and Evaluation**:
+### Application
 
-1. Engineered features for the Random Forest model, including relative pitch differences and previous fingering data.
-
-2. Trained a Random Forest Classifier and evaluated its performance using accuracy and confusion matrices.
-
-3. Saved the trained model for future use.
-
-**Application**:
-
-1. Created a script to apply the trained model to new scores, annotating them with predicted fingering.
-
-2. Integrated the functionality into a Python pipeline for automated processing of unseen scores.
-
+Created a script to apply the trained model to new scores, annotating them with predicted fingering.
 
 
 ## Dependencies and Setup
 
 The following tools and libraries were used in the project:
 
-1. **MuseScore**: A free, open-source music notation program that includes features for creating and editing scores.
+**MuseScore**: A free, open-source music notation program that includes features for creating and editing scores.
 
-2. **music21**: An object-oriented toolkit for analyzing, searching, and transforming music in symbolic (score- based) forms.
+**music21**: An object-oriented toolkit for analyzing, searching, and transforming music in symbolic (score- based) forms.
 
-3. **MuseScore.com:** A website that allows users to share, save, and publish sheet music online.
+**MuseScore.com:** A website that allows users to share, save, and publish sheet music online.
 
-4. **MusicXML:** is a format for sharing digital sheet music between applications. It's an open, flexible, and human-readable format that uses XML to represent musical elements. 
-
+**MusicXML:** is a format for sharing digital sheet music between applications. It's an open, flexible, and human-readable format that uses XML to represent musical elements. 
 
 
 ### Installation
@@ -75,9 +61,7 @@ python3 -c "from music21 import configure; configure.run()"
 ```
 
 
-
-
-## **Data Preparation**
+## Data Preparation
 
 - Collected piano scores (in MusicXML format) from Musescore.com, focusing on publicly available scores with fingering annotations.
 
@@ -95,11 +79,10 @@ python3 -c "from music21 import configure; configure.run()"
 
 
 
-## **Training**
+## Training
 
-**Feature Engineering**: Added sequential features for the previous two notes and their respective fingerings, as well as relative pitch differences.
-
-**Model Training**: Trained a Random Forest model on 90% of the dataset, reserving 10% for testing.
+### Feature Engineering
+ Added additional features that capture previous two notes and their respective fingerings (temporal dependencies).
 
 **Features Used**:
 
@@ -113,30 +96,24 @@ python3 -c "from music21 import configure; configure.run()"
 
 - Previous-previous note's pitch and finger
 
-**Results**:
-
-- Training Accuracy: 95.05%
-
-- Testing Accuracy: 77.71%
-
 **Details**: See `train_rf_model.py`.
 
 
 
+## Evaluation
 
-## **Evaluation**
+Training Accuracy: **95.05%**
 
-- Training Accuracy: 95.05%
+Testing Accuracy: **77.71%**
 
-- Testing Accuracy: 77.71%
+### Feature Importance
+The note's MIDI pitch and relative distance to previous two notes are the most improtant features for the model.
 
-### **Feature Importance**
+![The importance of features in the Random Forest model](img/importances.png)
 
-The importance of features in the Random Forest model
+### Confusion Matrix
 
-![Enter image alt description](img/importances.png)
-
-### **Confusion Matrix**
+The high values along the diagonal indicate that the model performs well in correctly predicting most fingers. Fingers 1 and 2 have better predictions, and finger 4 is the most difficult to predict (it is also less frequently used in the training dataset). 
 
 ![Enter image alt description](img/cm.png)
 
