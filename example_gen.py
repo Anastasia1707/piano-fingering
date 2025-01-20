@@ -78,7 +78,6 @@ def extract_fingering_to_dataframe(score_path):
 
 
 
-
 dataset = pd.DataFrame(columns=["title", "note", "pitch", "fingering", "is_chord", "is_rest", "hand"]);
 
 files = [join("data/", f) for f in listdir("data/") if isfile(join("data/", f))]

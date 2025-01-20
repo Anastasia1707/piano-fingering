@@ -14,7 +14,6 @@ import joblib
 # Load CSV file
 df = pd.read_csv('paino_fingering.csv')
 
-
 # Enriching with more features
 df['prev_pitch'] = df.groupby(['title', 'hand'])['pitch'].shift(1, fill_value = -1)
 df['prev_pitch'] = df['prev_pitch'] - df['pitch']
@@ -72,7 +71,5 @@ plt.title('Confusion Matrix')
 plt.savefig('img/cm.png')
 
 # Export
-
-
 # Save the model to a file
 joblib.dump(rf, 'rf_model.joblib')
