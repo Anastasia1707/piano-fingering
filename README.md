@@ -16,15 +16,12 @@
 This project leverages machine learning to predict piano fingering for musical scores. It uses real-world annotated piano scores, processes them to extract meaningful features, trains a Random Forest, LSTM, RNN and HMM models and applies them to annotate unseen scores with predicted fingering.
 
 
-
 ## Problem Overview
 
-Determining optimal piano fingering for a given score is a challenging task, influenced by musical, physiological, and stylistic factors. Current solutions rely on manual annotation, which can be time-consuming and inconsistent. This project automates fingering prediction using machine learning techniques, making it a valuable tool for learners, educators, and composers.
+Determining optimal piano fingering for a given score is a challenging task. Current solutions rely on manual annotation, which can be time-consuming and inconsistent. This project automates fingering prediction using machine learning techniques, making it a valuable tool for learners, educators, and composers.
 
 
-## Project Overview
-
-The project consists of three main components
+## Project Structure
 
 ### Training Data Preparation
 
@@ -34,7 +31,7 @@ Parsed publicly available MusicXML files with fingering annotations using the mu
 
 Engineered features for the Random Forest, LSTM, RNN. Trained Classifiers and evaluated performance using accuracy and confusion matrices. Saved the trained models for future use.
 
-Application of a generative probabilistic model, the Hidden Markov Model (HMM) using two approaches: one where the HMM parameters are learned directly from the data and another where the model is initialized with priors for transition, emission, and initial state probabilities calculated from the annotated dataset. 
+Applied a generative probabilistic model, the Hidden Markov Model (HMM) using two approaches: one where the HMM parameters are learned directly from the data and another where the model is initialized with priors for transition, emission, and initial state probabilities calculated from the annotated dataset. HMM was chosen because it is naturally suited for sequence labeling tasks like piano fingering. 
 
 ### Application
 
@@ -56,7 +53,7 @@ The following tools and libraries were used in the project:
 
 ## Data Preparation
 
-- Processed 43 43 publicly available, fingering-annotated piano scores in MusicXML format from Musescore.com.
+- Processed 43 publicly available, fingering-annotated piano scores in MusicXML format from Musescore.com.
 
 ●	Total Notes: ~39,000
 ●	Annotated Notes: ~16,000 (for both hands)
@@ -71,7 +68,7 @@ The following tools and libraries were used in the project:
 ## Training
 
 ### Feature Engineering
- Added additional features that capture previous two notes and their respective fingerings (temporal dependencies).
+ Added additional features that capture previous notes and their respective fingerings (temporal dependencies).
 
 **Features Used**:
 
