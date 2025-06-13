@@ -2,7 +2,7 @@
 
 Probabislitic Piano Fingering Predistion: [PDF Report] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic%20Piano%20Fingering%20.pdf)
 
-Probabislitic Piano Fingering Code Notebook: [Google Colab] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic_Piano_Fingering.ipynb)
+Probabislitic Piano Fingering Code Notebook: [Google Colab] (https://colab.research.google.com/drive/10XxhJ5FAuUE5TBYMddlNz81ZdxbGJGwP#scrollTo=GOW5yR6KzMgy)
 
 RF, LSTM, RNN Report: [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Predicting%20Piano%20Fingering.pdf)
 
