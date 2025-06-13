@@ -1,16 +1,14 @@
 ## About this project
 
 Probabislitic Piano Fingering Predistion: [PDF Report] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic%20Piano%20Fingering%20.pdf)
+
 Probabislitic Piano Fingering Code Notebook: [Google Colab] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic_Piano_Fingering.ipynb)
 
 RF, LSTM, RNN Report: [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Predicting%20Piano%20Fingering.pdf)
+
 Code Notebook: [Google Colab](https://github.com/Anastasia1707/piano-fingering/blob/main/PianoFingering.ipynb)
 
 
-# Piano Fingering
-
-
-![notes_with_fingering](img/notes_with_fingering.png)
 
 ## Abstract
 
