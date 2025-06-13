@@ -1,4 +1,4 @@
-## About this project
+## Files
 
 Probabislitic Piano Fingering Predistion: [PDF Report] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic%20Piano%20Fingering%20.pdf)
 
