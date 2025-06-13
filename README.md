@@ -6,7 +6,7 @@
 
 ### Random Forest, LSTM, RNN Fingering Models
 - 📄 [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Predicting%20Piano%20Fingering.pdf)
-- 📓 [Jupyter Notebook](https://github.com/Anastasia1707/piano-fingering/blob/main/PianoFingering.ipynb)
+- 📓 [Google Colab Notebook](https://colab.research.google.com/drive/1m4A6lOAbkHcj9SLFnic1hkWiV0W7-ixS#scrollTo=JzTTIEkJ27IQ)
 
 
 
