@@ -34,6 +34,8 @@ Parsed publicly available MusicXML files with fingering annotations using the mu
 
 Engineered features for the Random Forest, LSTM, RNN. Trained Classifiers and evaluated performance using accuracy and confusion matrices. Saved the trained models for future use.
 
+Application of a generative probabilistic model, the Hidden Markov Model (HMM) using two approaches: one where the HMM parameters are learned directly from the data and another where the model is initialized with priors for transition, emission, and initial state probabilities calculated from the annotated dataset. 
+
 ### Application
 
 Created a script to apply the trained model to new scores, annotating them with predicted fingering.
@@ -52,38 +54,17 @@ The following tools and libraries were used in the project:
 **MusicXML:** is a format for sharing digital sheet music between applications. It's an open, flexible, and human-readable format that uses XML to represent musical elements. 
 
 
-### Installation
-
-```shell
-# Install MuseScore
-sudo add-apt-repository ppa:mscore-ubuntu/mscore3-stable -y
-sudo apt-get update
-sudo apt-get install musescore3
-
-# Install libraries
-pip install music21
-pip install musicxml
-
-# Configure Music21
-python3 -c "from music21 import configure; configure.run()"
-```
-
-
 ## Data Preparation
 
-- Collected piano scores (in MusicXML format) from Musescore.com, focusing on publicly available scores with fingering annotations.
+- Processed 43 43 publicly available, fingering-annotated piano scores in MusicXML format from Musescore.com.
 
-- Processed 32 scores, containing over 31,000 notes, of which 13,000 had fingering annotations.
+●	Total Notes: ~39,000
+●	Annotated Notes: ~16,000 (for both hands)
+●	Features Extracted: Note pitch (as a MIDI number), chord information, and rest information.
 
 - Extracted data for each hand (right/left), including notes, chords, rests, and their associated fingerings.
 
 - Stored the processed dataset in `piano_fingering.csv`.
-
-![Enter image alt description](img/finger_dist.png)
-
-![Enter image alt description](img/pitch_dist.png)
-
-**Details**: See `example_gen.py`.
 
 
 
@@ -105,12 +86,16 @@ python3 -c "from music21 import configure; configure.run()"
 - Previous-previous note's pitch and finger
 
 
+For HMM Setup:
 
+- Hand Selection: right-hand only as common in fingering prediction research.
+- Segmentation: Rests split sequences; single-note phrases discarded.
+- Data Split: 80% training (MIDI sequences + lengths), 20% testing (includes ground-truth fingerings).
 
 
 ## Evaluation
 
-Training Accuracy: **95.05%**
+Training Accuracy: **95%**
 
 Testing Accuracy: **86%**
 
@@ -142,15 +127,3 @@ Example: Twinkle, Twinkle, Little Star (model generated fingering):
 This project demonstrates how machine learning can automate piano fingering prediction. While initial results are promising, further refinement in data and models can make this tool invaluable for music education and composition.
 
 
-
-## **Files**
-
-- `example_gen.py`: Script for data preparation.
-
-- `train_rf_model.py`: Script for training and evaluating the Random Forest model.
-
-- `fingering_application.py`: Script for updating fingering in a score using trained Random Forest model.
-
-- `piano_fingering.csv`: Prepared dataset.
-
-- `rf_model.joblib`: Trained Random Forest model for inference.
