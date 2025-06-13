@@ -1,3 +1,12 @@
+## About this project
+
+Probabislitic Piano Fingering Predistion: [PDF Report] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic%20Piano%20Fingering%20.pdf)
+Probabislitic Piano Fingering Code Notebook: [Google Colab] (https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic_Piano_Fingering.ipynb)
+
+RF, LSTM, RNN Report: [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Predicting%20Piano%20Fingering.pdf)
+Code Notebook: [Google Colab](https://github.com/Anastasia1707/piano-fingering/blob/main/PianoFingering.ipynb)
+
+
 # Piano Fingering
 
 
@@ -5,7 +14,7 @@
 
 ## Abstract
 
-This project leverages machine learning to predict piano fingering for musical scores. It uses real-world annotated piano scores, processes them to extract meaningful features, trains a Random Forest model, and applies the model to annotate unseen scores with predicted fingering.
+This project leverages machine learning to predict piano fingering for musical scores. It uses real-world annotated piano scores, processes them to extract meaningful features, trains a Random Forest, LSTM, RNN and HMM models and applies them to annotate unseen scores with predicted fingering.
 
 
 
@@ -24,7 +33,7 @@ Parsed publicly available MusicXML files with fingering annotations using the mu
 
 ### Model Training and Evaluation
 
-Engineered features for the Random Forest model (previous fingering data). Trained a Random Forest Classifier and evaluated its performance using accuracy and confusion matrices. Saved the trained model for future use.
+Engineered features for the Random Forest, LSTM, RNN. Trained Classifiers and evaluated performance using accuracy and confusion matrices. Saved the trained models for future use.
 
 ### Application
 
@@ -96,7 +105,7 @@ python3 -c "from music21 import configure; configure.run()"
 
 - Previous-previous note's pitch and finger
 
-**Details**: See `train_rf_model.py`.
+
 
 
 
@@ -104,7 +113,7 @@ python3 -c "from music21 import configure; configure.run()"
 
 Training Accuracy: **95.05%**
 
-Testing Accuracy: **77.71%**
+Testing Accuracy: **86%**
 
 ### Feature Importance
 The note's MIDI pitch and relative distance to previous two notes are the most improtant features for the model.
@@ -126,16 +135,6 @@ The trained model was applied to new scores to predict fingering. The `fingering
 Example: Twinkle, Twinkle, Little Star (model generated fingering):
 
 ![Enter image alt description](img/twinkle_with_fingering.png)
-
-
-
-## **Future Work**
-
-1. Experiment with alternative models (e.g., Gradient Boosting, SVM, XGBoost).
-
-2. Generate synthetic training data using music theory heuristics.
-
-3. Add forward-looking features, note duration, and rhythmic patterns for improved prediction.
 
 
 
