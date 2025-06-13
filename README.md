@@ -56,8 +56,11 @@ The following tools and libraries were used in the project:
 - Processed 43 publicly available, fingering-annotated piano scores in MusicXML format from Musescore.com.
 
 ●	Total Notes: ~39,000
+
 ●	Annotated Notes: ~16,000 (for both hands)
+
 ●	Features Extracted: Note pitch (as a MIDI number), chord information, and rest information.
+
 
 - Extracted data for each hand (right/left), including notes, chords, rests, and their associated fingerings.
 
