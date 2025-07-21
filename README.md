@@ -3,12 +3,12 @@
 
 ### Random Forest, LSTM, RNN Fingering Models
 - 📄 [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Predicting%20Piano%20Fingering.pdf)
-- 📓 [Google Colab Notebook](https://colab.research.google.com/drive/1m4A6lOAbkHcj9SLFnic1hkWiV0W7-ixS#scrollTo=JzTTIEkJ27IQ)
+- 📓 [Google Colab Notebook](https://colab.research.google.com/drive/1m4A6lOAbkHcj9SLFnic1hkWiV0W7-ixS)
 
 
 ### Probabilistic Piano Fingering with HMM
 - 📄 [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic%20Piano%20Fingering%20.pdf)
-- 📓 [Google Colab Notebook](https://colab.research.google.com/drive/10XxhJ5FAuUE5TBYMddlNz81ZdxbGJGwP#scrollTo=GOW5yR6KzMgy)
+- 📓 [Google Colab Notebook](https://colab.research.google.com/drive/10XxhJ5FAuUE5TBYMddlNz81ZdxbGJGwP)
 
 ## Abstract
 
