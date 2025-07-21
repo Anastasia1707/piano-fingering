@@ -8,7 +8,7 @@
 
 ### Probabilistic Piano Fingering with HMM
 - 📄 [PDF Report](https://github.com/Anastasia1707/piano-fingering/blob/main/Probabilistic%20Piano%20Fingering%20.pdf)
-- 📓 <a href="https://colab.research.google.com/drive/10XxhJ5FAuUE5TBYMddlNz81ZdxbGJGwP" target="_blank">Google Colab Notebook</a>
+- 📓 [Google Colab Notebook](https://colab.research.google.com/drive/10XxhJ5FAuUE5TBYMddlNz81ZdxbGJGwP)
 
 ## Abstract
 
