@@ -149,21 +149,28 @@ uploaded = st.file_uploader("Upload a MusicXML file", type=["mxl", "musicxml", "
 
 use_demo = st.button("Or try a demo file (Fur Elise)")
 
+demo_name = None
 if use_demo:
-    uploaded = open("Fur_Elise_Piano.xml", "rb")
-    uploaded.name = "Fur_Elise_Piano.xml"
+    with open("Fur_Elise_Piano.xml", "rb") as f:
+        uploaded = f.read()
+    demo_name = "Fur_Elise_Piano.xml"
 
 if uploaded is not None:
+    if demo_name:
+        file_name = demo_name
+        file_bytes = uploaded
+    else:
+        file_name = uploaded.name
+        file_bytes = uploaded.read()
     with st.spinner("Parsing score..."):
-        # Save upload to a temp file so music21 can read it
-        suffix = os.path.splitext(uploaded.name)[1]
+        suffix = os.path.splitext(file_name)[1]
         with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-            tmp.write(uploaded.read())
+            tmp.write(file_bytes)
             tmp_path = tmp.name
 
         score = converter.parse(tmp_path)
 
-    st.success(f"Parsed **{uploaded.name}** — {len(score.parts)} part(s) found.")
+    st.success(f"Parsed **{file_name}** — {len(score.parts)} part(s) found.")
 
     with st.spinner("Predicting fingerings..."):
         df, note_map = extract_features(score)
@@ -186,7 +193,7 @@ if uploaded is not None:
         with open(out_path, "rb") as f:
             out_bytes = f.read()
 
-    base_name = os.path.splitext(uploaded.name)[0]
+    base_name = os.path.splitext(file_name)[0]
     st.download_button(
         label="Download annotated MusicXML",
         data=out_bytes,
