@@ -194,12 +194,32 @@ if uploaded is not None:
             out_bytes = f.read()
 
     base_name = os.path.splitext(file_name)[0]
-    st.download_button(
-        label="Download annotated MusicXML",
-        data=out_bytes,
-        file_name=f"{base_name}_fingered.musicxml",
-        mime="application/vnd.recordare.musicxml+xml",
-    )
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.download_button(
+            label="Download MusicXML",
+            data=out_bytes,
+            file_name=f"{base_name}_fingered.musicxml",
+            mime="application/vnd.recordare.musicxml+xml",
+        )
+    with col2:
+        try:
+            from music21 import environment
+            environment.set("lilypondPath", "/usr/bin/lilypond")
+            pdf_path = tempfile.mktemp(suffix=".pdf")
+            score.write("lily.pdf", fp=pdf_path)
+            with open(pdf_path, "rb") as f:
+                pdf_bytes = f.read()
+            st.download_button(
+                label="Download PDF",
+                data=pdf_bytes,
+                file_name=f"{base_name}_fingered.pdf",
+                mime="application/pdf",
+            )
+            os.unlink(pdf_path)
+        except Exception as e:
+            st.warning(f"PDF export unavailable: {e}")
 
     # Cleanup temp files
     os.unlink(tmp_path)
