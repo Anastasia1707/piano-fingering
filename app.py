@@ -205,8 +205,12 @@ if uploaded is not None:
         )
     with col2:
         try:
+            import shutil
             from music21 import environment
-            environment.set("lilypondPath", "/usr/bin/lilypond")
+            lily_path = shutil.which("lilypond")
+            if not lily_path:
+                raise FileNotFoundError("LilyPond not found on server")
+            environment.set("lilypondPath", lily_path)
             pdf_path = tempfile.mktemp(suffix=".pdf")
             score.write("lily.pdf", fp=pdf_path)
             with open(pdf_path, "rb") as f:
