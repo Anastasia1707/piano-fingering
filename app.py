@@ -206,22 +206,53 @@ if uploaded is not None:
     with col2:
         try:
             import shutil
+            import subprocess
             from music21 import environment
+
             lily_path = shutil.which("lilypond")
             if not lily_path:
                 raise FileNotFoundError("LilyPond not found on server")
             environment.set("lilypondPath", lily_path)
-            pdf_path = tempfile.mktemp(suffix=".pdf")
-            score.write("lily.pdf", fp=pdf_path)
-            with open(pdf_path, "rb") as f:
-                pdf_bytes = f.read()
-            st.download_button(
-                label="Download PDF",
-                data=pdf_bytes,
-                file_name=f"{base_name}_fingered.pdf",
-                mime="application/pdf",
+
+            # Remove zero-duration elements that break LilyPond export
+            from music21 import stream
+            clean_score = stream.Score()
+            for part in score.parts:
+                clean_part = stream.Part()
+                for el in part.recurse():
+                    if hasattr(el, 'duration') and el.duration.quarterLength == 0:
+                        continue
+                    if isinstance(el, (note.Note, chord.Chord, note.Rest)):
+                        clean_part.append(el)
+                clean_score.append(clean_part)
+
+            # Write to LilyPond format
+            ly_path = tempfile.mktemp(suffix=".ly")
+            clean_score.write("lilypond", fp=ly_path)
+
+            # Run LilyPond to produce PDF
+            pdf_dir = tempfile.mkdtemp()
+            subprocess.run(
+                [lily_path, "-dbackend=ps", f"--output={pdf_dir}", ly_path],
+                capture_output=True, timeout=60
             )
-            os.unlink(pdf_path)
+
+            # Find the output PDF
+            pdf_file = os.path.join(pdf_dir, os.path.basename(ly_path).replace(".ly", ".pdf"))
+            if os.path.exists(pdf_file):
+                with open(pdf_file, "rb") as f:
+                    pdf_bytes = f.read()
+                st.download_button(
+                    label="Download PDF",
+                    data=pdf_bytes,
+                    file_name=f"{base_name}_fingered.pdf",
+                    mime="application/pdf",
+                )
+                os.unlink(pdf_file)
+            else:
+                st.warning("PDF generation failed — LilyPond produced no output")
+
+            os.unlink(ly_path)
         except Exception as e:
             st.warning(f"PDF export unavailable: {e}")
 
