@@ -1,5 +1,5 @@
 ## Try it in the app!
-- piano-fingers.streamlit.app/
+[Open Piano Fingering Predictor](https://piano-fingers.streamlit.app/)
 
 
 ## Files
